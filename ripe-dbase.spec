@@ -19,6 +19,7 @@ BuildRequires:	pam-devel
 BuildRequires:	perl-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
+URL:		http://www.ripe.net/ripencc/pub-services/db/reimp/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
