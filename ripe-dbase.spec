@@ -1,11 +1,12 @@
 # TODO:
 # - make logrotate file
-# - make proper init-script
+# - make proper init-script and remove stupid scripts from package
+# - rename configs and move examples to docs
 Summary:	RIPE Whois Server
 Summary(pl):	Serwer RIPE Whois
 Name:		ripe-dbase
 Version:	3.2.0
-Release:	0.3
+Release:	0.4
 License:	distributable (see COPYING)
 Group:		Applications/Networking
 Source0:	ftp://ftp.ripe.net/ripe/dbase/software/%{name}-%{version}.tar.gz
@@ -84,3 +85,18 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(751,root,root) %dir %{_confdir}
 %attr(640,root,root) %config(noreplace) %{_confdir}/*
+# Everything from that place should be in %docs. Not needed
+%dir %{_datadir}/ripe
+%dir %{_datadir}/ripe/scripts
+%dir %{_datadir}/ripe/scripts/SQL
+%{_datadir}/ripe/scripts/SQL/*
+%attr(755,root,root) %{_datadir}/ripe/scripts/*.sh
+%attr(755,root,root) %{_datadir}/ripe/scripts/make_db
+%attr(755,root,root) %{_datadir}/ripe/scripts/ripe2rpsl
+%attr(755,root,root) %{_datadir}/ripe/scripts/whoisd.server
+%dir %{_libdir}/ripe
+%dir %{_libdir}/ripe/utils
+%attr(755,root,root) %{_libdir}/ripe/utils/*
+
+%dir /var/log/ripe
+%dir /var/log/ripe/*
