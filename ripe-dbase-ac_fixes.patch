@@ -10,7 +10,7 @@
  lockdir=@lockdir@
  
 --- ./configure.in.org	Mon Aug 23 14:56:49 2004
-+++ ./configure.in	Mon Aug 23 15:49:02 2004
++++ ./configure.in	Mon Aug 23 16:11:27 2004
 @@ -1,5 +1,6 @@
  dnl Process this file with autoconf to produce a configure script.
 -AC_INIT(bin/rip/whois_rip.c)
@@ -61,7 +61,7 @@
  AC_SUBST(tmpdir)
  AC_SUBST(lockdir)
  
-@@ -81,7 +77,23 @@
+@@ -81,14 +77,30 @@
  AC_SUBST(libdir)
  AC_SUBST(mandir)
  
@@ -86,3 +86,92 @@
  
  dnl
  dnl glib-config
+ dnl
+ 
+ AC_ARG_WITH(glibconfig, 
+-	[  --with-glibconfig=FILE     FILE=path of glib-config file[$ac_default_prefix/bin/glib-config]],
++	AC_HELP_STRING([--with-glibconfig=FILE],[FILE=path of glib-config file[$ac_default_prefix/bin/glib-config]]),
+ 	if test [ x$withval != x ] -a [ -x $withval ]; then
+ 	  glibconfig=$withval
+ 	else
+@@ -108,7 +120,7 @@
+ dnl
+ 
+ AC_ARG_WITH(mysql, 
+-	[  --with-mysql=DIR        DIR=path of MySQL distribution dir[$ac_default_prefix/mysql]],
++	AC_HELP_STRING([--with-mysql=DIR],[DIR=path of MySQL distribution dir[$ac_default_prefix/mysql]]),
+ 	if test [ x$withval != x ] -a [ -d $withval ]; then
+ 	  mysql=$withval
+ 	else
+@@ -128,7 +140,7 @@
+ dnl
+ 
+ AC_ARG_WITH(mysqlinc, 
+-	[  --with-mysqlinc=DIR        DIR=path of MySQL include dir[$ac_default_prefix/mysql/include]],
++	AC_HELP_STRING([--with-mysqlinc=DIR],[DIR=path of MySQL include dir[$ac_default_prefix/mysql/include]]),
+ 	if test [ x$withval != x ] -a [ -d $withval ]; then
+ 	  mysqlincdir=$withval
+ 	else
+@@ -147,7 +159,7 @@
+ dnl
+ 
+ AC_ARG_WITH(mysqllib, 
+-	[  --with-mysqllib=DIR        DIR=path of MySQL library dir[$ac_default_prefix/mysql/lib]],
++	AC_HELP_STRING([--with-mysqllib=DIR],[DIR=path of MySQL library dir[$ac_default_prefix/mysql/lib]]),
+ 	if test [ x$withval != x ] -a [ -d $withval ]; then
+ 	  mysqllibdir=$withval
+ 	else
+@@ -166,7 +178,7 @@
+ dnl
+ 
+ AC_ARG_WITH(mysqlbin, 
+-	[  --with-mysqlbin=DIR        DIR=path of MySQL binary dir[$ac_default_prefix/mysql/bin]],
++	AC_HELP_STRING([--with-mysqlbin=DIR],[DIR=path of MySQL binary dir[$ac_default_prefix/mysql/bin]]),
+ 	if test [ x$withval != x ] -a [ -d $withval ]; then
+ 	  mysqlbindir=$withval
+ 	else
+@@ -185,7 +197,7 @@
+ dnl
+ 
+ AC_ARG_WITH(xsltconfig, 
+-	[  --with-xsltconfig=FILE     FILE=path of xsltconfig file[$ac_default_prefix/bin/xslt-config]],
++	AC_HELP_STRING([--with-xsltconfig=FILE],[FILE=path of xsltconfig file[$ac_default_prefix/bin/xslt-config]]),
+ 	if test [ x$withval != x ] -a [ -x $withval ]; then
+ 	  xsltconfig=$withval
+ 	else
+@@ -208,7 +220,7 @@
+ dnl
+ 
+ AC_ARG_WITH(xmlconfig, 
+-	[  --with-xmlconfig=FILE     FILE=path of xml-config file[$ac_default_prefix/bin/xml2-config]],
++	AC_HELP_STRING([--with-xmlconfig=FILE],[FILE=path of xml-config file[$ac_default_prefix/bin/xml2-config]]),
+ 	if test [ x$withval != x ] -a [ -x $withval ]; then
+ 	  xmlconfig=$withval
+ 	else
+@@ -231,7 +243,7 @@
+ dnl
+ 
+ AC_ARG_WITH(cclientinc, 
+-	[  --with-cclientinc=DIR      DIR=path of c-client include dir[$ac_default_prefix/build/imap/c-client]],
++	AC_HELP_STRING([--with-cclientinc=DIR],[DIR=path of c-client include dir[$ac_default_prefix/build/imap/c-client]]),
+ 	if test [ x$withval != x ] -a [ -d $withval ]; then
+ 	  cclientinc=$withval
+ 	else
+@@ -240,7 +252,7 @@
+ 	cclientinc=$ac_default_prefix/build/imap/c-client)
+ 
+ AC_ARG_WITH(cclientlib, 
+-	[  --with-cclientlib=DIR      DIR=path of c-client library dir[$ac_default_prefix/build/imap/c-client]],
++	AC_HELP_STRING([--with-cclientlib=DIR],[DIR=path of c-client library dir[$ac_default_prefix/build/imap/c-client]]),
+ 	if test [ x$withval != x ] -a [ -d $withval ]; then
+ 	  cclientlib=$withval
+ 	else
+@@ -266,7 +278,7 @@
+ dnl
+ 
+ AC_ARG_WITH(gpgcmd, 
+-	[  --with-gpgcmd=CMD      CMD=pathname of gpg executable [/usr/local/bin/gpg]],
++	AC_HELP_STRING([--with-gpgcmd=CMD],[CMD=pathname of gpg executable [/usr/local/bin/gpg]]),
+ 	if test [ x$withval != x ] -a [ -x $withval ]; then
+ 	  gpgcmd=$withval
+ 	else
