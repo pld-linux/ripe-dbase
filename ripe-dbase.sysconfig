@@ -1,0 +1,14 @@
+# ripe-dbase startup configuration file
+
+# Try to define nice-level for running ripe-dbase
+SERVICE_RUN_NICE_LEVEL="+5"
+
+# Config that you want to use from /etc/ripe-dbase directory:
+CONFIG=rip.config.sample
+
+# E-mail address where crash notifications are sent:
+NOTIFY=root@localhost
+
+# Number of crashes per day before the whois_rip stops
+CRASHES=10
+
