@@ -6,11 +6,13 @@ Release:	0.1
 License:	distributable
 Group:		Applications/Networking
 Source0:	ftp://ftp.ripe.net/ripe/dbase/software/%{name}-%{version}.tar.gz
-# Source0-md5:	e6bf6cd019b2fd6e49409850b92c34ad
+# Source0-md5:	67c7cde734017727e091dba7084f18fd
 BuildRequires:	glib-devel
+BuildRequires:	gnupg
 BuildRequires:	imap-static
 BuildRequires:	libxml-devel
 BuildRequires:	libxslt-devel
+BuildRequires:	mysql-client
 BuildRequires:	mysql-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pam-devel
