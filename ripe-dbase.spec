@@ -1,7 +1,8 @@
 # TODO:
 # - make logrotate file
-# - make proper init-script and remove stupid scripts from package
+# - remove stupid scripts from package
 # - rename configs and move examples to docs
+# - restore functionality of scripts from original package
 Summary:	RIPE Whois Server
 Summary(pl):	Serwer RIPE Whois
 Name:		ripe-dbase
@@ -11,8 +12,11 @@ License:	distributable (see COPYING)
 Group:		Applications/Networking
 Source0:	ftp://ftp.ripe.net/ripe/dbase/software/%{name}-%{version}.tar.gz
 # Source0-md5:	67c7cde734017727e091dba7084f18fd
+Source1:	%{name}.init
+Source2:	%{name}.sysconfig
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-ac_fixes.patch
+Patch2:		%{name}-logdir.patch
 URL:		http://www.ripe.net/ripencc/pub-services/db/reimp/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -44,6 +48,7 @@ Implementation Project (RIP).
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 # RIPE variant
@@ -72,9 +77,16 @@ sed -i -e 's#$(CCLIENTLIBDIR)/c-client.a#$(CCLIENTLIBDIR)/libc-client.a#g' Makef
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
+
+# Remove junk replaced by things provided with spec:
+rm -f $RPM_BUILD_ROOT%{_datadir}/ripe/scripts/whoisd.server
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -82,9 +94,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README* UPDATE* COPYING RELEASE* doc/[!M]* modules/MODULES
-%attr(755,root,root) %{_bindir}/*
 %attr(751,root,root) %dir %{_confdir}
 %attr(640,root,root) %config(noreplace) %{_confdir}/*
+%attr(640,root,root) %config(noreplace) /etc/sysconfig/%{name}
+%attr(755,root,root) %{_bindir}/*
+%attr(751,root,root) /etc/rc.d/init.d/%{name}
 # Everything from that place should be in %docs. Not needed
 %dir %{_datadir}/ripe
 %dir %{_datadir}/ripe/scripts
@@ -93,7 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/ripe/scripts/*.sh
 %attr(755,root,root) %{_datadir}/ripe/scripts/make_db
 %attr(755,root,root) %{_datadir}/ripe/scripts/ripe2rpsl
-%attr(755,root,root) %{_datadir}/ripe/scripts/whoisd.server
 %dir %{_libdir}/ripe
 %dir %{_libdir}/ripe/utils
 %attr(755,root,root) %{_libdir}/ripe/utils/*
