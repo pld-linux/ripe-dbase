@@ -1,0 +1,76 @@
+--- ./Makefile.in.org	Mon Aug 23 11:50:32 2004
++++ ./Makefile.in	Mon Aug 23 12:04:40 2004
+@@ -107,48 +107,55 @@
+ all: links libs rip load dbupdate utils
+ 
+ install:
+-	${mkinstalldirs} ${topdir} ${bindir} ${confdir} \
+-                         ${scriptdir} ${scriptdir}/SQL \
+-                         ${docdir} ${vardir} ${tmpdir} ${tmpdir}/load ${tmpdir}/load/SAMPLE ${lockdir} \
+-                         ${logdir} ${qrylog} ${dbuperr} ${allriperr} ${ripaudit} \
+-                         ${ripmirlog} ${ripsvrlog} ${sqlog} ${ripupdlog} \
+-                         ${updlog} ${acklog} ${notiflog} ${forwlog} ${crosslog}
++	${mkinstalldirs} ${DESTDIR}${topdir} ${DESTDIR}${bindir} \
++			${DESTDIR}${confdir} ${DESTDIR}${scriptdir} \
++			${DESTDIR}${scriptdir}/SQL ${DESTDIR}${docdir} \
++			${DESTDIR}${vardir} ${DESTDIR}${tmpdir} \
++			${DESTDIR}${tmpdir}/load ${DESTDIR}${tmpdir}/load/SAMPLE \
++			${DESTDIR}${lockdir} ${DESTDIR}${logdir} \
++			${DESTDIR}${qrylog} ${DESTDIR}${dbuperr} \
++			${DESTDIR}${allriperr} ${DESTDIR}${ripaudit} \
++			${DESTDIR}${ripmirlog} ${DESTDIR}${ripsvrlog} \
++			${DESTDIR}${sqlog} ${DESTDIR}${ripupdlog} \
++			${DESTDIR}${updlog} ${DESTDIR}${acklog} \
++			${DESTDIR}${notiflog} ${DESTDIR}${forwlog} \
++			${DESTDIR}${crosslog}
+ 	for p in $(BINPROGRAMS); do \
+-	 ${INSTALL} -m 0755 $$p ${bindir}; \
++	 ${INSTALL} -m 0755 $$p ${DESTDIR}${bindir}; \
+ 	done
+ 	for p in $(SCRIPTS); do \
+-	 ${INSTALL} -m 0755 $$p ${scriptdir}; \
++	 ${INSTALL} -m 0755 $$p ${DESTDIR}${scriptdir}; \
+ 	done
+ 	for p in $(SQLLOADSCRIPTS); do \
+-	 ${INSTALL} -m 0755 $$p ${scriptdir}/SQL; \
++	 ${INSTALL} -m 0755 $$p ${DESTDIR}${scriptdir}/SQL; \
+ 	done
+ 	for p in $(SQLLOADDATA); do \
+-	 ${INSTALL} -m 0644 $$p ${scriptdir}/SQL; \
++	 ${INSTALL} -m 0644 $$p ${DESTDIR}${scriptdir}/SQL; \
+ 	done
+ 	for p in $(CONFFILES); do \
+-	 ${INSTALL} -m 0644 $$p ${confdir}; \
++	 ${INSTALL} -m 0644 $$p ${DESTDIR}${confdir}; \
+ 	done
+ 	for p in ${DOCFILES}; do  \
+-	${INSTALL} -m 0644 $$p ${docdir}; \
++	${INSTALL} -m 0644 $$p ${DESTDIR}${docdir}; \
+ 	done
+ 	for p in ${SAMPLEDB}; do \
+-	${INSTALL} -m 0644 $$p  ${tmpdir}/load/SAMPLE; \
++	${INSTALL} -m 0644 $$p  ${DESTDIR}${tmpdir}/load/SAMPLE; \
+ 	done
+ #install-utils:
+-	${mkinstalldirs} ${utildir}
++	${mkinstalldirs} ${DESTDIR}${utildir}
+ 	for p in $(UTILS); do \
+-	 ${INSTALL} -m 0755 $$p ${utildir}; \
++	 ${INSTALL} -m 0755 $$p ${DESTDIR}${utildir}; \
+ 	done
+ 
+ upgrade:
+ 	for p in $(BINPROGRAMS); do \
+-	 ${INSTALL} -m 0755 $$p ${bindir}; \
++	 ${INSTALL} -m 0755 $$p ${DESTDIR}${bindir}; \
+ 	done
+ 	for p in $(SQLLOADSCRIPTS); do \
+-	 ${INSTALL} -m 0755 $$p ${scriptdir}/SQL; \
++	 ${INSTALL} -m 0755 $$p ${DESTDIR}${scriptdir}/SQL; \
+ 	done
+ 	for p in $(SQLLOADDATA); do \
+-	 ${INSTALL} -m 0644 $$p ${scriptdir}/SQL; \
++	 ${INSTALL} -m 0644 $$p ${DESTDIR}${scriptdir}/SQL; \
+ 	done
+ 
+ ########
