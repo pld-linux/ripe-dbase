@@ -1,0 +1,11 @@
+--- ./utils/whoisd_start.in.logdir	Tue Aug 24 14:43:16 2004
++++ ./utils/whoisd_start.in	Tue Aug 24 14:42:16 2004
+@@ -39,7 +39,7 @@
+ 
+ BINDIR=@bindir@
+ CONFDIR=@confdir@
+-err_log=@bindir@/${WHOISD}.err.log
++err_log=@logdir@/${WHOISD}.err.log
+ CONFIG=${CONFDIR}/${RIP_CONFIG}
+ WHOISRIP=@bindir@/$WHOISD
+ 
