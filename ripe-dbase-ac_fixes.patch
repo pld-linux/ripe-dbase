@@ -1,0 +1,76 @@
+--- ./Makefile.in.org	Mon Aug 23 14:56:08 2004
++++ ./Makefile.in	Mon Aug 23 15:24:50 2004
+@@ -44,7 +44,7 @@
+ scriptdir=@scriptdir@
+ utildir=@utildir@
+ docdir=@docdir@
+-vardir=@vardir@
++vardir=@localstatedir@
+ tmpdir=@tmpdir@
+ lockdir=@lockdir@
+ 
+--- ./configure.in.org	Mon Aug 23 14:56:49 2004
++++ ./configure.in	Mon Aug 23 15:27:37 2004
+@@ -23,21 +23,18 @@
+ dnl installation directory layout
+ dnl
+ topdir=$prefix
+-bindir=${topdir}/bin
+-confdir=${topdir}/conf
+ scriptdir=${topdir}/scripts
+ utildir=${topdir}/utils
+ docdir=${topdir}/doc
+-vardir=${topdir}/var
+-tmpdir=${vardir}/tmp
+-lockdir=${vardir}/lock
++tmpdir=${localstatedir}/tmp
++lockdir=${localstatedir}/lock
+ 
+ libdir=${topdir}/lib/gnudl
+ mandir=${topdir}/man/man1
+ 
+ #######
+ # Log infrastructure
+-logdir=${topdir}/log
++logdir=${localstatedir}/log
+ qrylog=${logdir}/qry
+ dbuperr=${logdir}/dbuperr
+ allriperr=${logdir}/riperr
+@@ -53,12 +50,9 @@
+ crosslog=${logdir}/cross
+ 
+ AC_SUBST(topdir)
+-AC_SUBST(bindir)
+-AC_SUBST(confdir)
+ AC_SUBST(scriptdir)
+ AC_SUBST(utildir)
+ AC_SUBST(docdir)
+-AC_SUBST(vardir)
+ AC_SUBST(tmpdir)
+ AC_SUBST(lockdir)
+ 
+@@ -81,7 +75,23 @@
+ AC_SUBST(libdir)
+ AC_SUBST(mandir)
+ 
+-
++#####################
++### Configs location:
++###
++dnl Where are configs...
++AC_ARG_WITH(config-dir,
++	    AC_HELP_STRING([--with-config-dir=DIR],[Set config file path (default: sysconfdir/conf)]),
++	    if test "x$with_config_dir" = xyes; then
++		    RIPE_CONFIGDIR="${sysconfdir}/conf"
++	    else
++		    if test "x$with_config_dir" = xno; then
++			    AC_MSG_ERROR(Config directory required)
++		    else
++			    RIPE_CONFIGDIR="$with_config_dir"
++		    fi
++	    fi,
++	    RIPE_CONFIGDIR="${sysconfdir}/conf")
++AC_SUBST(confdir, $RIPE_CONFIGDIR)
+ 
+ dnl
+ dnl glib-config
