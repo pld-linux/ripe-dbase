@@ -12,7 +12,7 @@ BuildRequires:	imap-static
 BuildRequires:	libxml-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	mysql-devel
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pam-devel
 BuildRequires:	perl-devel
 BuildRequires:	sed >= 4.0
