@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %{_confdir}/*
 %attr(640,root,root) %config(noreplace) /etc/sysconfig/%{name}
 %attr(755,root,root) %{_bindir}/*
-%attr(751,root,root) /etc/rc.d/init.d/%{name}
+%attr(754,root,root) /etc/rc.d/init.d/%{name}
 # Everything from that place should be in %docs. Not needed
 %dir %{_datadir}/ripe
 %dir %{_datadir}/ripe/scripts
