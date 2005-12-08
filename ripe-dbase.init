@@ -69,7 +69,7 @@ case "$1" in
 		msg_already_running ripe-dbase
 	fi
 	;;
-	
+
   'stop')
 	if [ -f /var/lock/subsys/ripe-dbase ]; then
 		# Stop server using SIGTERM signal
