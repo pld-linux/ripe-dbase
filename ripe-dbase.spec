@@ -4,7 +4,7 @@
 # - rename configs and move examples to docs
 # - restore functionality of scripts from original package
 Summary:	RIPE Whois Server
-Summary(pl):	Serwer RIPE Whois
+Summary(pl.UTF-8):   Serwer RIPE Whois
 Name:		ripe-dbase
 Version:	3.2.0
 Release:	0.4
@@ -40,8 +40,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 The server software of the RIPE Whois Server, also known as the RPSL
 Implementation Project (RIP).
 
-%description -l pl
-Oprogramowanie serwerowe serwera RIPE Whois, znane takøe jako RPSL
+%description -l pl.UTF-8
+Oprogramowanie serwerowe serwera RIPE Whois, znane tak≈ºe jako RPSL
 Implementation Project (RIP).
 
 %prep
