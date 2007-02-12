@@ -4,7 +4,7 @@
 # - rename configs and move examples to docs
 # - restore functionality of scripts from original package
 Summary:	RIPE Whois Server
-Summary(pl.UTF-8):   Serwer RIPE Whois
+Summary(pl.UTF-8):	Serwer RIPE Whois
 Name:		ripe-dbase
 Version:	3.2.0
 Release:	0.4
